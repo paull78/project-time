@@ -23,14 +23,16 @@ The templates for every file this skill writes are in `templates.md`, next to th
 Run on every invocation. Each check is cheap; write only what is missing or outdated.
 
 1. **Git.** `git rev-parse --is-inside-work-tree`. Not a repo: offer `git init`. If the user declines, carry on and skip every commit in the workflow.
-2. **AGENTS.md block.** Look for `<!-- project-time:start v4 -->` … `<!-- project-time:end -->`.
+2. **AGENTS.md block.** Look for `<!-- project-time:start v5 -->` … `<!-- project-time:end -->`.
    - No block: append the AGENTS.md block from `templates.md`, creating `AGENTS.md` if needed.
    - An older version marker: replace everything between the markers, markers included, with the block from `templates.md`.
-   - The v4 marker: leave it alone. If the user asks to repair the block, replace it as above.
+   - The v5 marker: leave it alone. If the user asks to repair the block, replace it as above.
 3. **CLAUDE.md import.** Claude Code ignores `AGENTS.md` when a `CLAUDE.md` exists, so `CLAUDE.md` must import it. No file: create it containing `@AGENTS.md`. File without an `@AGENTS.md` line: append one.
 4. **Project memory.** Create `docs/memory/INDEX.md` and `docs/memory/overview.md` from `templates.md` if missing. Leave any other `docs/` content alone. If one of these paths exists but isn't ours, ask; never overwrite.
-5. **Auto-memory off.** In a project-time repo the three levels replace Claude Code's per-folder auto-memory. Set `"autoMemoryEnabled": false` in `.claude/settings.json`, creating the file or merging the key into it. If the auto-memory folder for this repo (`~/.claude/projects/<path with / as ->/memory/`) holds entries, show them and propose a home for each: project memory (repo facts, machine facts such as ports included), general memory (facts about the user or their tools), or drop. Write the approved ones, then empty that folder.
+5. **Auto-memory off.** In a project-time repo the three levels replace Claude Code's per-folder auto-memory. Set `"autoMemoryEnabled": false` in `.claude/settings.json`, creating the file or merging the key into it. If the write is refused, auto-memory stays on: say so to the user and give them the line `"autoMemoryEnabled": false` for `.claude/settings.json`. If the auto-memory folder for this repo (`~/.claude/projects/<path with / as ->/memory/`) holds entries, show them and propose a home for each: project memory (repo facts, machine facts such as ports included), general memory (facts about the user or their tools), or drop. Write the approved ones, then empty that folder.
 6. **General memory.** Machine-wide, outside the repo, not committed. Create `~/.agents/memory/INDEX.md` from `templates.md` if missing. If `~/.claude/project-lessons.md` exists (the old general file), move its lines into `~/.agents/memory/lessons.md`, add the area to the INDEX, and delete the old file. Make sure `~/.claude/CLAUDE.md` has the line `@~/.agents/memory/INDEX.md`, creating the file if needed, so Claude loads the general level in every session.
+
+If any write in these checks is refused, carry on, but before handing off tell the user what wasn't written, with the exact line and the file it goes in.
 
 If anything in the repo was written, commit only those files as `project-time: setup`.
 

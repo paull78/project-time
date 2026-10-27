@@ -17,6 +17,11 @@ for f in docs/current/plan/step-*.md; do
   assert_grep "$f" '^## Verify'
   assert_grep "$f" '^## Done when'
   assert_grep "$f" '^## Tests to write first'
+  # Vertical steps: a step with tests also changes code, so tests and implementation are never split.
+  if ! grep -q 'Exception:' "$f"; then
+    awk '/^## Files touched/{p=1;next} /^## /{p=0} p' "$f" | grep -E '^- ' | grep -viE 'test' >/dev/null \
+      || fail "$f lists only test files: tests and implementation split into separate steps"
+  fi
 done
 for ac in $(grep -oE 'AC-[0-9]+' docs/current/spec.md | sort -u); do
   grep -qw "$ac" docs/current/plan/step-*.md || fail "$ac is not covered by any step"

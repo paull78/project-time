@@ -5,11 +5,11 @@ source "$(dirname "$0")/lib.sh"
 new_scratch
 turn "/project-time new project, slug wordfreq. I'll describe it when you ask."
 
-assert_grep AGENTS.md '<!-- project-time:start v4 -->'
+assert_grep AGENTS.md '<!-- project-time:start v5 -->'
 # Headless claude -p refuses writes to .claude/settings.json whatever the allow rules,
 # so accept the setting handed to the user instead (checked by hand, see README).
 if ! grep -qE '"autoMemoryEnabled": *false' .claude/settings.json 2>/dev/null; then
-  grep -E 'autoMemoryEnabled' <<< "$LAST" >/dev/null || fail "auto-memory setting neither written nor handed to the user"
+  grep -E 'autoMemoryEnabled' <<< "$SAID" >/dev/null || fail "auto-memory setting neither written nor handed to the user"
 fi
 assert_grep AGENTS.md '<!-- project-time:end -->'
 assert_grep CLAUDE.md '^@AGENTS.md$'

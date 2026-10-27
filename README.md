@@ -102,13 +102,16 @@ project-time keeps three levels of memory, from the most specific to the most
 general. **Cycle** memory, in `docs/current/memory/`, belongs to the feature
 being built on this branch: the agent writes down a decision, a discovery, a
 pivot or an issue the moment it happens. **Project** memory, in `docs/memory/`,
-holds what is true for the whole repo and lives in git with the code. It changes
-only when a cycle wraps, which promotes the cycle entries that still matter and
-rewrites a one-page overview. **General** memory, in `~/.agents/memory/`, sits
-outside any repo and is read in every project: facts about you, your tools, and
-lessons from finished cycles, each added with your approval. Every
-session reads the index of all three, and where they disagree the more specific
-level wins.
+holds what is true now for the whole repo and lives in git with the code. It
+changes only when a cycle wraps, which promotes the cycle entries that still
+matter, replaces the entries they change and rewrites a one-page overview; the
+history stays in `docs/archive/`. **General** memory, in `~/.agents/memory/`,
+sits outside any repo and is read in every project: facts about you, your
+tools, and lessons from finished cycles. Only a big lesson that is general, proven
+and undisputed gets there, so most cycles add nothing, and the wrap tells you
+what it added. Both levels are merged and compacted as they grow. Every session
+reads the index of all three, and where they disagree the more specific level
+wins.
 
 <p align="center">
   <picture>
@@ -138,7 +141,7 @@ memory levels.
 | [project-spec](./project-spec) | The interview, the spec, Gate 0, and amend mode for changing an approved spec mid-build. |
 | [project-plan](./project-plan) | Milestones, step files, parallel-safe groups, Gate 1, and update mode after a pivot. |
 | [project-build](./project-build) | The step loop: resume, tests first, verify, memory checkpoint, commit. Milestone gates and parallel runs. |
-| [project-wrap](./project-wrap) | Final gate, recap, memory consolidation and promotion, archive. Also writes interim recaps. |
+| [project-wrap](./project-wrap) | Final gate, then runs on its own: recap, compact project memory, rare general lessons, archive. Also writes interim recaps. |
 
 ## Support
 

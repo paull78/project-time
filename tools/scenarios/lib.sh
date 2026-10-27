@@ -18,12 +18,16 @@ TOOLS=(Read Write Edit Glob Grep Skill Agent
   "Bash(touch:*)" "Bash(shasum:*)" "Bash(echo:*)" "Bash(sort:*)" "Bash(diff:*)" "Bash(cd:*)")
 SESSION=""
 LAST=""
+SAID=""
 
 # Canned user replies.
 ACCEPT="I'll take your recommendation."
 ACCEPT_OK="Yes, OK. I'll take your recommendation."
 FINISH_SPEC="I'll take your recommendation. If you think the spec covers everything: it's done, skip the challenge round, and I approve it."
 AUTOPILOT="Yes. Take your recommendation. Whatever you are asking me to approve (outline, spec, plan, gate, consolidation) is approved; use sequential mode; manual checks are confirmed; to bring the branch up to date, merge the default branch into it; never merge the feature branch into the default branch, I do that myself; no lessons to promote; pins are done with."
+
+# Which Claude Code runs the scenarios: the first `claude` on PATH. Checked once per script.
+echo "claude: $(command -v claude) $(claude --version 2>/dev/null | head -1)"
 
 fail() { echo "FAIL: $*" >&2; exit 1; }
 pass() { echo "PASS: $*"; }
@@ -72,7 +76,7 @@ turn() {
   local prompt="$1" out rc
   # project,local only: skills installed in ~/.claude/skills would otherwise shadow the
   # working copies linked into the scratch repo, and the scenarios would test the wrong code.
-  local args=(-p "$prompt" --output-format json --permission-mode acceptEdits
+  local args=(-p "$prompt" --output-format stream-json --verbose --permission-mode acceptEdits
     --setting-sources project,local
     --add-dir "$HOME/.claude" --allowedTools "${TOOLS[@]}")
   [ -n "$SESSION" ] && args+=(--resume "$SESSION")
@@ -88,10 +92,24 @@ turn() {
       fail "claude -p exited $rc twice (session $SESSION)"
     fi
   fi
-  SESSION="$(printf '%s' "$out" | python3 -c 'import json,sys; print(json.load(sys.stdin)["session_id"])')"
-  LAST="$(printf '%s' "$out" | python3 -c 'import json,sys; print(json.load(sys.stdin).get("result", ""))')"
+  # stream-json: one event per line; the last "result" event carries the session and the final message.
+  local field='import json,sys
+ev=[json.loads(l) for l in sys.stdin if l.strip().startswith("{")]
+res=[e for e in ev if e.get("type")=="result"][-1]
+k=sys.argv[1]
+if k=="said": print("\n\n".join(c["text"] for e in ev if e.get("type")=="assistant" for c in e["message"].get("content",[]) if c.get("type")=="text"))
+elif k=="denials": print(res.get("permission_denials") or "")
+elif k=="model": print(",".join((res.get("modelUsage") or {}).keys()))
+else: print(res.get(k,""))'
+  SESSION="$(printf '%s' "$out" | python3 -c "$field" session_id)"
+  LAST="$(printf '%s' "$out" | python3 -c "$field" result)"
+  # Everything the agent said this turn, not only the final message: a user sees all of it.
+  SAID="$(printf '%s' "$out" | python3 -c "$field" said)"
   local denials
-  denials="$(printf '%s' "$out" | python3 -c 'import json,sys; d=json.load(sys.stdin).get("permission_denials"); print(d) if d else None')"
+  denials="$(printf '%s' "$out" | python3 -c "$field" denials)"
+  local model
+  model="$(printf '%s' "$out" | python3 -c "$field" model)"
+  [ -n "$model" ] && [ "$model" != "${SCENARIO_LAST_MODEL:-}" ] && { echo "model: $model"; printf '\n## model: %s\n' "$model" >> "$TRANSCRIPT"; SCENARIO_LAST_MODEL="$model"; }
   [ -n "$denials" ] && printf '\n## permission denials\n%s\n' "$denials" >> "$TRANSCRIPT"
   printf '\n## user\n%s\n\n## agent\n%s\n' "$prompt" "$LAST" >> "$TRANSCRIPT"
   printf '\n--- agent ---\n%s\n' "$LAST"

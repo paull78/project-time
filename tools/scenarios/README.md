@@ -42,4 +42,4 @@ Headless runs can't write `.claude/settings.json`, so `01-setup.sh` accepts the 
 
 ## Manual check: general memory
 
-A headless run may be refused writes outside the repo, so `08-wrap.sh` accepts a lesson handed over instead of written. In an interactive session on a copy of the `at-final-gate` snapshot, back up `~/.agents/memory/`, run `/project-time`, approve the wrap and one lesson, accept any permission prompt, and check that `~/.agents/memory/lessons.md` gets exactly one new line and the INDEX lists the area. Restore the folder afterwards.
+A headless run may be refused writes outside the repo, so `08-wrap.sh` can pass without touching `~/.agents/memory/`. In an interactive session on a copy of the `at-final-gate` snapshot, back up `~/.agents/memory/`, run `/project-time`, approve the gate, accept any permission prompt, and check that the wrap asks nothing more, adds at most one line to `lessons.md`, and, if the file was over about 30 lines, compacts it after saving `lessons.md.bak`. Restore the folder afterwards.

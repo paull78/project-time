@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.0 · 2026-10-27
+
+- After the final gate, the wrap runs without questions and reports what it moved. It asks only when a cycle pin could be for the repo or for this cycle, or when a new general line would contradict an existing one.
+- General memory is frugal: only a big lesson that is general, proven, undisputed and new gets there, so most cycles add nothing. A narrow fact about a tool or library stays in project memory, and a merge adds only the new source to an existing line.
+- Memory stays compact. Project memory keeps what is true now, with a promoted entry replacing the one it changes and the history left in `docs/archive/`. General memory stays under about 30 lessons and 10 pins: every wrap compacts a file over its limit, merging repeats and dropping lessons that only fit one repo, after saving a `.bak` copy for undo.
+- The `AGENTS.md` block is at v5. Setup upgrades a v4 block in place.
+
 ## 1.0.0 · 2026-10-21
 
 First release as its own repository. The skills were developed in [paull78/skills](https://github.com/paull78/skills) until now.

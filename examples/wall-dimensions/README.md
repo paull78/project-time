@@ -31,7 +31,7 @@ wrap    final gate: "dimension should not start mid wall"
 | [recap.md](recap.md) | `docs/current/recap.md` | The cycle told for people, citing memory IDs |
 | [moved-up.md](moved-up.md) | | Where each cycle entry went at wrap |
 | [memory/project/](memory/project/) | `docs/memory/` | Project memory after the wrap: the promoted entries, IDs unchanged |
-| [memory/general/](memory/general/) | `~/.agents/memory/` | General memory after the wrap: a pin and the two new lessons |
+| [memory/general/](memory/general/) | `~/.agents/memory/` | General memory after the wrap: a pin, and the takeaway merged into an earlier lesson |
 
 ## Follow the change of mind
 
@@ -39,4 +39,4 @@ wrap    final gate: "dimension should not start mid wall"
 2. During the build, [wall-dims.04](memory/cycle/dimensions.md) notes that faces end cleanly at corners, which answers that objection.
 3. At the final gate the user asks for clear space. The pivot [wall-dims.06](memory/cycle/dimensions.md) supersedes .02, which stays in place with a link to .06.
 4. The [spec](spec.md) strikes AC-02 and adds AC-05 and AC-06. The [plan](plan/INDEX.md) gets Milestone 3, and the done steps stay as they were.
-5. At wrap, .06 moves up to [project memory](memory/project/domain.md) with its ID, and the takeaway becomes a [lesson for every project](memory/general/lessons.md).
+5. At wrap, .06 moves up to [project memory](memory/project/domain.md) with its ID, and the takeaway is merged into a [lesson for every project](memory/general/lessons.md) that was already there.

@@ -11,15 +11,15 @@
 <text x="148" y="88" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" fill="#f0f6fc">~/.agents/memory/</text>
 <text x="380" y="48" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16" font-weight="600" fill="#f0f6fc">Every project on this machine</text>
 <text x="380" y="73" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#9198a1">You, your tools, lessons from finished cycles</text>
-<text x="380" y="96" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#9198a1">Changes at wrap, one approved item at a time</text>
+<text x="380" y="96" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#9198a1">At wrap, only general, proven lessons; kept short</text>
 <rect x="120" y="168" width="720" height="100" rx="12" fill="#3fb950" fill-opacity="0.08" stroke="#3fb950" stroke-opacity="0.45" stroke-width="1.5"/>
 <clipPath id="k1"><rect x="120" y="168" width="720" height="100" rx="12"/></clipPath>
 <rect x="120" y="168" width="6" height="100" fill="#3fb950" clip-path="url(#k1)"/>
 <text x="148" y="212" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="24" font-weight="700" fill="#3fb950">Project</text>
 <text x="148" y="240" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" fill="#f0f6fc">docs/memory/</text>
 <text x="380" y="200" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16" font-weight="600" fill="#f0f6fc">This repo, in git with the code</text>
-<text x="380" y="225" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#9198a1">Code, product, working rules, a one-page overview</text>
-<text x="380" y="248" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#9198a1">Changes only when a cycle wraps</text>
+<text x="380" y="225" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#9198a1">What is true now: code, product, rules, an overview</text>
+<text x="380" y="248" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#9198a1">Changes at wrap; the history stays in docs/archive/</text>
 <rect x="120" y="320" width="720" height="100" rx="12" fill="#4493f8" fill-opacity="0.08" stroke="#4493f8" stroke-opacity="0.45" stroke-width="1.5"/>
 <clipPath id="k2"><rect x="120" y="320" width="720" height="100" rx="12"/></clipPath>
 <rect x="120" y="320" width="6" height="100" fill="#4493f8" clip-path="url(#k2)"/>
@@ -29,7 +29,7 @@
 <text x="380" y="377" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#9198a1">Decisions, discoveries, pivots, issues</text>
 <text x="380" y="400" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#9198a1">Written the moment something happens</text>
 <line x1="270" y1="162" x2="270" y2="128" stroke="#9198a1" stroke-width="2" marker-end="url(#a)"/>
-<text x="288" y="147.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#9198a1">at wrap: only what holds everywhere, approved by you</text>
+<text x="288" y="147.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#9198a1">at wrap: only big, undisputed lessons; most cycles add none</text>
 <line x1="270" y1="314" x2="270" y2="280" stroke="#9198a1" stroke-width="2" marker-end="url(#a)"/>
-<text x="288" y="299.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#9198a1">at wrap: each entry promoted or archived</text>
+<text x="288" y="299.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#9198a1">at wrap: what still matters is promoted, the rest archived</text>
 </svg>
